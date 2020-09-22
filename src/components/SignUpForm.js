@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
-import Button from "@material-ui/core/Button";
-import { Container, Grid, TextField } from "@material-ui/core";
+import { Container, Grid, Button } from "@material-ui/core";
+import Input from "./Input";
 
 const SignupForm = () => {
   const formik = useFormik({
@@ -17,34 +17,21 @@ const SignupForm = () => {
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <TextField
-              label="Forename"
-              id="forename"
-              name="forename"
-              type="text"
-              onChange={handleChange}
+            <Input
               value={forename}
+              handleChange={handleChange}
+              label="forename"
             />
           </Grid>
           <Grid item xs={6}>
-            <TextField
-              label="Surname"
-              id="surname"
-              name="surname"
-              type="text"
-              onChange={handleChange}
+            <Input
               value={surname}
+              handleChange={handleChange}
+              label="surname"
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              onChange={handleChange}
-              value={email}
-            />
+            <Input value={email} handleChange={handleChange} label="email" />
           </Grid>
         </Grid>
         <Button

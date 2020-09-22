@@ -6,3 +6,7 @@
 .button {
   margin: 20px;
 }
+
+.input {
+  text-transform: capitalize;
+}
