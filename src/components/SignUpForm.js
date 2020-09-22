@@ -2,44 +2,41 @@ import React from "react";
 import { useFormik } from "formik";
 import { Container, Grid, Button } from "@material-ui/core";
 import Input from "./Input";
+import validate from "./validation";
 
 const SignupForm = () => {
   const formik = useFormik({
     initialValues: { forename: "", surname: "", email: "" },
+    validate,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     }
   });
-  const { handleSubmit, handleChange } = formik;
-  const { forename, surname, email } = formik.values;
+  const { handleSubmit, handleChange, errors } = formik;
   return (
     <Container component="main" maxWidth="xs">
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Input
-              value={forename}
-              handleChange={handleChange}
-              label="forename"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Input
-              value={surname}
-              handleChange={handleChange}
-              label="surname"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Input value={email} handleChange={handleChange} label="email" />
-          </Grid>
+        <Grid className="signup" container>
+          <Input
+            value={formik.values.forename}
+            handleChange={handleChange}
+            label="forename"
+            errors={errors.forename}
+          />
+          <Input
+            value={formik.values.surname}
+            handleChange={handleChange}
+            label="surname"
+            errors={errors.surname}
+          />
+          <Input
+            value={formik.values.email}
+            handleChange={handleChange}
+            label="email"
+            errors={errors.email}
+          />
         </Grid>
-        <Button
-          className="button"
-          type="submit"
-          variant="contained"
-          color="primary"
-        >
+        <Button type="submit" variant="contained" color="primary">
           Submit
         </Button>
       </form>
